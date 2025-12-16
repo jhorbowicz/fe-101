@@ -2,6 +2,18 @@
 
 ## part I
 
+After cloning:
+
+```
+yarn install
+```
+
+And then to start the dev server:
+
+```
+yarn dev
+```
+
 In this part we will summarize the things that we did so far. Assignment is simple: 
 
 > Fetch the list of users, display them on rhe right side, and display the selected user details on the left side. By default, after entering the page and loading the data, the first user should be selected. We select the users by clicking on their tile on the list. Also we apply some styling on hovered user. List and the details containers should be the same size, so it means, that in case there is more users, list should be scrollable.
