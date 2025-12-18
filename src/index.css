@@ -2,3 +2,146 @@ body {
   /* font-family: "Fira Code Variable", monospace; */
   font-family: "Source Sans Pro", sans-serif;
 }
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  height: 400px;
+  gap: 20px;
+  padding: 20px;
+}
+
+.user-details-container {
+  width: 50%;
+  overflow: scroll;
+  box-shadow: inset 0px 0px 0px 2px lightgrey;
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+.user-details-inner {
+  padding: 8px;
+}
+
+.user-id {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.user-name {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.user-username {
+  font-size: 16px;
+  font-weight: 400;
+  color: gray;
+  margin-left: 8px;
+}
+
+.user-website {
+  font-size: 14px;
+}
+
+.extra-data {
+  margin-top: 34px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.address-data {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-right: 2px solid gray;
+  margin-right: 17px;
+}
+
+.company-data {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.user-list-container {
+  width: 50%;
+  overflow-y: scroll;
+  box-shadow: inset 0px 0px 0px 2px lightgrey;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+  overflow: scroll;
+}
+
+.user-list-item {
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
+  padding: 12px 18px;
+  border-bottom: 2px solid lightgray;
+}
+
+.user-list-item-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.user-list-item-id {
+  font-size: 14px;
+  font-weight: 400;
+  color: gray;
+}
+
+.user-list-item-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.user-list-item-user-data {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 8px;
+}
+
+.user-list-item-name {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 18px;
+  width: fit-content;
+}
+
+.user-list-item-city {
+  font-size: 12px;
+  font-weight: 400;
+  color: gray;
+}
+
+.user-list-item-company-data {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 8px;
+  font-weight: 400;
+}
+
+.user-list-item-company {
+  font-size: 18px;
+}
+
+.user-list-item-phone {
+  font-size: 12px;
+}

@@ -7,7 +7,6 @@ export function App() {
   const [users, setUsers] = React.useState<User[]>([]);
   const [selectedUser, setSelectedUser] = React.useState<User | null>(null);
 
-  // Should rather be provided by a context later on when/if we fetch more data?
   React.useEffect(() => {
     async function fetchUsers() {
       const response = await fetch(
@@ -18,7 +17,6 @@ export function App() {
     fetchUsers();
   }, []);
 
-  // Will this only run on first render?
   React.useEffect(() => {
     if (selectedUser !== null) return;
 
@@ -31,16 +29,7 @@ export function App() {
     <>
       {/* <header id="page-header" style={{ alignContent: "center", backgroundColor: "#ffffff", backgroundImage: "repeating-linear-gradient(-45deg, rgba(233, 136, 61, .35) 0, rgba(233, 136, 61, .35) 40px, transparent 0, transparent 50%)", backgroundSize: "60px 60px", color: "white", fontSize: "32px", fontWeight: "800", height: "60px", letterSpacing: "10px", textAlign: "center", }} > fe-101 </header> */}
 
-      <main
-        id="page-content"
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          height: "400px",
-          gap: "20px",
-          padding: "20px",
-        }}
-      >
+      <main className="main-container">
         {/* It wouldn't allow `<UserDetails user={selectedUser} />`. Why? */}
         {selectedUser ? (
           <UserDetails {...selectedUser} />
