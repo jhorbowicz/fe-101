@@ -153,11 +153,10 @@ body {
 
 .user-list-query-input {
   width: 70%;
-  box-sizing: border-box;
-  padding: 8px 12px;
   font-size: 16px;
   border: none;
   border-bottom: 2px solid #1b4ef450;
+  padding: 8px;
 }
 
 .query-container {
@@ -168,5 +167,6 @@ body {
   text-align: center;
   border: 2px solid lightgray;
   background-color: white;
-  padding: 8px;
+  padding: 12px;
+  box-sizing: border-box;
 }
