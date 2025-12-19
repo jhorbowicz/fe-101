@@ -1,6 +1,10 @@
 import type { User } from "../types";
 
-export function UserDetails(user: User) {
+interface UserDetailsProps {
+  user: User | null;
+}
+
+export function UserDetails({ user }: UserDetailsProps) {
   return (
     <section className="user-details-container">
       {user ? (
@@ -16,7 +20,16 @@ export function UserDetails(user: User) {
               <span className="user-name">{user.name}</span>
               <span className="user-username">({user.username})</span>
               <br />
-              <span className="user-website">🌐 {user.website}</span>
+              <span className="user-website">
+                🌐{" "}
+                <a
+                  href={`http://${user.website}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {user.website}
+                </a>
+              </span>
             </div>
             <div className="extra-data">
               <div className="address-data">

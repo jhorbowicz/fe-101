@@ -3,21 +3,31 @@ import type { User } from "../types";
 
 interface UserListProps {
   users: User[] | null;
-  selectedUser: User | null;
+  displayedUser: User | null;
   // robot made this signature
   // why is it `(user: User) => () => void` and not just `(user: User) => void` ?
-  setSelectedUser: (user: User) => () => void;
+  setDisplayedUser: (user: User) => () => void;
+  setFilterQuery: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export function UserList({
   users,
-  selectedUser,
-  setSelectedUser,
+  displayedUser,
+  setDisplayedUser,
+  setFilterQuery,
 }: UserListProps) {
   const [hoveredUserId, setHoveredUserId] = React.useState<number | null>(null);
 
   return (
     <section className="user-list-container">
+      <div className="query-container">
+        <input
+          className="user-list-query-input"
+          type="text"
+          placeholder="Find"
+          onChange={(e) => setFilterQuery(e.target.value)}
+        />
+      </div>
       <div className="user-list">
         {users?.map((user: User) => (
           <div
@@ -25,9 +35,10 @@ export function UserList({
             key={user.id}
             onMouseEnter={() => setHoveredUserId(user.id)}
             onMouseLeave={() => setHoveredUserId(null)}
+            onClick={setDisplayedUser(user)}
             style={{
               backgroundColor:
-                user.id === selectedUser?.id
+                user.id === displayedUser?.id
                   ? "#1b4ef452"
                   : user.id === hoveredUserId
                   ? "#d3d3d34f"
@@ -44,17 +55,16 @@ export function UserList({
                   className="user-list-item-user-data"
                   style={{
                     borderRight:
-                      user.id === selectedUser?.id
+                      user.id === displayedUser?.id
                         ? "2px solid white"
                         : "2px solid lightgray",
                   }}
                 >
-                  <a
+                  <button
                     className="user-list-item-name"
-                    onClick={setSelectedUser(user)}
                     style={{
                       color:
-                        user.id === selectedUser?.id
+                        user.id === displayedUser?.id
                           ? "white"
                           : user.id === hoveredUserId
                           ? "#1b4ef4"
@@ -62,7 +72,7 @@ export function UserList({
                     }}
                   >
                     {user.name}
-                  </a>
+                  </button>
                   <span className="user-list-item-city">
                     {user.address.city}
                   </span>
@@ -70,7 +80,7 @@ export function UserList({
                 <div
                   className="user-list-item-company-data"
                   style={{
-                    color: user.id === selectedUser?.id ? "white" : "gray",
+                    color: user.id === displayedUser?.id ? "white" : "gray",
                   }}
                 >
                   <span className="user-list-item-company">

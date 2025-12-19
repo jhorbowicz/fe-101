@@ -4,44 +4,64 @@ import { UserList } from "./components/UserList.tsx";
 import type { User } from "./types.ts";
 
 export function App() {
-  const [users, setUsers] = React.useState<User[]>([]);
-  const [selectedUser, setSelectedUser] = React.useState<User | null>(null);
+  const [allUsers, setAllUsers] = React.useState<User[]>([]);
+  const [currentUsers, setUsers] = React.useState<User[]>([]);
+  const [displayedUser, setDisplayedUser] = React.useState<User | null>(null);
+  const [filterQuery, setFilterQuery] = React.useState<string>("");
 
+  // initial fetch
   React.useEffect(() => {
     async function fetchUsers() {
       const response = await fetch(
         "https://jsonplaceholder.typicode.com/users"
       );
-      setUsers((await response.json()) as User[]);
+      const fetchedUsers = (await response.json()) as User[];
+      setUsers(fetchedUsers);
+      setAllUsers(fetchedUsers);
     }
     fetchUsers();
   }, []);
 
+  // displayed user
   React.useEffect(() => {
-    if (selectedUser !== null) return;
+    if (displayedUser !== null) return;
 
-    if (users.length > 0) {
-      setSelectedUser(users[0]);
+    if (currentUsers.length > 0) {
+      setDisplayedUser(currentUsers[0]);
     }
-  }, [users]);
+  }, [currentUsers]);
+
+  // list filter
+  React.useEffect(() => {
+    if (filterQuery.trim() === "") {
+      setUsers(allUsers);
+      return;
+    }
+
+    const lowerCaseQuery = filterQuery.toLowerCase();
+    const filteredUsers = allUsers.filter((user) =>
+      user.name.toLowerCase().includes(lowerCaseQuery)
+    );
+    setUsers(filteredUsers);
+  }, [filterQuery]);
 
   return (
     <>
       {/* <header id="page-header" style={{ alignContent: "center", backgroundColor: "#ffffff", backgroundImage: "repeating-linear-gradient(-45deg, rgba(233, 136, 61, .35) 0, rgba(233, 136, 61, .35) 40px, transparent 0, transparent 50%)", backgroundSize: "60px 60px", color: "white", fontSize: "32px", fontWeight: "800", height: "60px", letterSpacing: "10px", textAlign: "center", }} > fe-101 </header> */}
 
       <main className="main-container">
-        {/* It wouldn't allow `<UserDetails user={selectedUser} />`. Why? */}
-        {selectedUser ? (
-          <UserDetails {...selectedUser} />
+        {displayedUser ? (
+          <UserDetails user={displayedUser} />
         ) : (
           <p>Obligatory no data message 🥳</p>
         )}
 
-        {users.length > 0 ? (
+        {currentUsers.length > 0 ? (
           <UserList
-            users={users}
-            selectedUser={selectedUser}
-            setSelectedUser={(user: User) => () => setSelectedUser(user)}
+            users={currentUsers}
+            displayedUser={displayedUser}
+            setDisplayedUser={(user: User) => () => setDisplayedUser(user)}
+            setFilterQuery={setFilterQuery}
           />
         ) : (
           <p>Obligatory no data message 🥳</p>

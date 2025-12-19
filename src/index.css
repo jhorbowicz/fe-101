@@ -80,7 +80,7 @@ body {
   display: flex;
   flex-direction: column;
   max-height: inherit;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .user-list-item {
@@ -89,6 +89,7 @@ body {
   flex-direction: row;
   padding: 12px 18px;
   border-bottom: 2px solid lightgray;
+  cursor: pointer;
 }
 
 .user-list-item-inner {
@@ -118,10 +119,14 @@ body {
 }
 
 .user-list-item-name {
-  cursor: pointer;
   font-weight: 700;
   font-size: 18px;
   width: fit-content;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
 }
 
 .user-list-item-city {
@@ -144,4 +149,24 @@ body {
 
 .user-list-item-phone {
   font-size: 12px;
+}
+
+.user-list-query-input {
+  width: 70%;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid #1b4ef450;
+}
+
+.query-container {
+  top: 0px;
+  left: 0px;
+  position: sticky;
+  width: 100%;
+  text-align: center;
+  border: 2px solid lightgray;
+  background-color: white;
+  padding: 8px;
 }
