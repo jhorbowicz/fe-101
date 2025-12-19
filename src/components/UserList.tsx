@@ -28,71 +28,78 @@ export function UserList({
           onChange={(e) => setFilterQuery(e.target.value)}
         />
       </div>
-      <div className="user-list">
-        {users?.map((user: User) => (
-          <div
-            className="user-list-item"
-            key={user.id}
-            onMouseEnter={() => setHoveredUserId(user.id)}
-            onMouseLeave={() => setHoveredUserId(null)}
-            onClick={setDisplayedUser(user)}
-            style={{
-              backgroundColor:
-                user.id === displayedUser?.id
-                  ? "#1b4ef452"
-                  : user.id === hoveredUserId
-                  ? "#d3d3d34f"
-                  : "",
-            }}
-          >
-            <div className="user-list-item-inner">
-              <span className="user-list-item-id">
-                {"#"}
-                {user.id}
-              </span>
-              <div className="user-list-item-row">
-                <div
-                  className="user-list-item-user-data"
-                  style={{
-                    borderRight:
-                      user.id === displayedUser?.id
-                        ? "2px solid white"
-                        : "2px solid lightgray",
-                  }}
-                >
-                  <button
-                    className="user-list-item-name"
+
+      {users && users.length > 0 ? (
+        <div className="user-list">
+          {users?.map((user: User) => (
+            <div
+              className="user-list-item"
+              key={user.id}
+              onMouseEnter={() => setHoveredUserId(user.id)}
+              onMouseLeave={() => setHoveredUserId(null)}
+              onClick={setDisplayedUser(user)}
+              style={{
+                backgroundColor:
+                  user.id === displayedUser?.id
+                    ? "#1b4ef452"
+                    : user.id === hoveredUserId
+                    ? "#d3d3d34f"
+                    : "",
+              }}
+            >
+              <div className="user-list-item-inner">
+                <span className="user-list-item-id">
+                  {"#"}
+                  {user.id}
+                </span>
+                <div className="user-list-item-row">
+                  <div
+                    className="user-list-item-user-data"
                     style={{
-                      color:
+                      borderRight:
                         user.id === displayedUser?.id
-                          ? "white"
-                          : user.id === hoveredUserId
-                          ? "#1b4ef4"
-                          : "gray",
+                          ? "2px solid white"
+                          : "2px solid lightgray",
                     }}
                   >
-                    {user.name}
-                  </button>
-                  <span className="user-list-item-city">
-                    {user.address.city}
-                  </span>
-                </div>
-                <div
-                  className="user-list-item-company-data"
-                  style={{
-                    color: user.id === displayedUser?.id ? "white" : "gray",
-                  }}
-                >
-                  <span className="user-list-item-company">
-                    {user.company.name}
-                  </span>
-                  <span className="user-list-item-phone">{user.phone}</span>
+                    <button
+                      className="user-list-item-name"
+                      style={{
+                        color:
+                          user.id === displayedUser?.id
+                            ? "white"
+                            : user.id === hoveredUserId
+                            ? "#1b4ef4"
+                            : "gray",
+                      }}
+                    >
+                      {user.name}
+                    </button>
+                    <span className="user-list-item-city">
+                      {user.address.city}
+                    </span>
+                  </div>
+                  <div
+                    className="user-list-item-company-data"
+                    style={{
+                      color: user.id === displayedUser?.id ? "white" : "gray",
+                    }}
+                  >
+                    <span className="user-list-item-company">
+                      {user.company.name}
+                    </span>
+                    <span className="user-list-item-phone">{user.phone}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <p style={{ paddingLeft: "18px" }}>
+          No users match the filter criteria.
+        </p>
+      )}
     </section>
   );
 }
