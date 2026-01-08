@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/fira-code": "^5.2.7",
+    "@fontsource/source-sans-pro": "^5.2.5",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
